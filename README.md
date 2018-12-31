@@ -1,2 +1,5 @@
 # Data-Structures-Algorithms
-Sorting Algorithms , Searching , Minimum Spanning Tree
+Sorting Algorithms
+Minimum Spanning Tree ( Prims and Kruskal )
+Greedy Knapsack
+Divide and Conquer MaxMin
