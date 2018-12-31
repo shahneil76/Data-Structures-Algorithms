@@ -1,0 +1,59 @@
+#include<iostream>
+using namespace std;
+
+int count=0;
+
+int partition(int x[],int y,int z)
+{
+    count++;
+	int piviot=x[z];
+    int i,t,p=y;
+    for(i=y;i<z;i++)
+    {
+        count++;
+    	if(x[i]<=piviot)
+        {
+        	t=x[i];
+            x[i]=x[p];
+            x[p]=t;
+            p++;
+        }
+	}
+    t=x[z];
+    x[z]=x[p];
+    x[p]=t;
+    return p;
+}
+void quicksort(int x[],int y,int z)
+{
+    count++;
+	if(y<z)
+	{
+		int p=partition(x,y,z);
+        quicksort(x,y,p-1);
+        quicksort(x,p+1,z);
+	}
+}
+int main()
+{
+	int n;
+    cout<<"Enter number of elements :";
+    cin>>n;
+    int x[n];
+
+    for(int i=0;i<n;i++)
+    {
+        cout<<"Enter x["<<i<<"] :";
+    	cin>>x[i];
+	}
+	quicksort(x,0,n-1);
+    cout<<"Sorted array:";
+    for(int i=0;i<n;i++)
+    {
+    	cout<<x[i]<<" ";
+	}
+
+	cout<<endl<<"Count is :"<<count;
+
+	return 0;
+}
