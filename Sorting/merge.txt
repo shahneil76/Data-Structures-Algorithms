@@ -1,0 +1,80 @@
+#include<iostream>
+using namespace std;
+int mergesort(int x[],int i,int j,int count1); 
+int merge(int x[],int i1,int j1,int i2,int j2,int count1); 
+ 
+int mergesort(int x[],int i,int j,int count1) 
+{ 
+    int mid; 
+    if(i<j) 
+    { 
+        count1++; 
+        mid=(i+j)/2; 
+        mergesort(x,i,mid,count1); 
+        mergesort(x,mid+1,j,count1); 
+        count1=merge(x,i,mid,mid+1,j,count1); 
+    } 
+    return count1; 
+} 
+ 
+int merge(int x[],int i1,int j1,int i2,int j2,int count1) 
+{ 
+    int temp[10]; 
+    int i,j,k; 
+    i=i1; 
+    j=i2; 
+    k=0; 
+ 
+    while(i<=j1 && j<=j2) 
+    { 
+        count1++; 
+        if(x[i]<x[j]) 
+        { 
+            temp[k++]=x[i++]; 
+        } 
+        else 
+        { 
+            temp[k++]=x[j++]; 
+        } 
+    } 
+ 
+    while(i<=j1) 
+    { 
+        temp[k++]=x[i++]; 
+    } 
+ 
+    while(j<=j2) 
+    { 
+        temp[k++]=x[j++]; 
+    } 
+ 
+    for(i=i1,j=0;i<=j2;i++,j++) 
+    { 
+        count1++; 
+         x[i]=temp[j]; 
+    } 
+    return count1; 
+} 
+ 
+int main() 
+{ 
+    int n=5,i,count1=0; 
+    int x[n]; 
+ 
+    cout<<"Enter array: "<<endl; 
+    for(i=0;i<n;i++) 
+    { 
+        cin>>x[i]; 
+    } 
+    cout<<endl; 
+ 
+    count1=mergesort(x,0,n-1,count1); 
+ 
+    cout<<"Sorted :"; 
+    for(i=0;i<n;i++) 
+    { 
+        cout<<x[i]<<" "; 
+    } 
+    cout<<endl<<"Count :"<<count1<<endl; 
+    return 0; 
+}
